@@ -13,10 +13,38 @@ No* CriarNo(int valor, string nome)
 	return no;
 }
 
-No* AdicionarNo(No* primeiro, No* novo)
+void AdicionarNo(No* head, No* novo)
 {
-	(*primeiro).seguinte = novo;
-	return primeiro;
+	(*head).seguinte = novo;
+}
+
+void RemoverPorValor(No* head, int v)
+{
+	No* atual = head;
+	No* proximo = (*atual).seguinte;
+	while (atual != nullptr)
+	{
+		if ((*proximo).valor == v)
+		{
+			(*atual).seguinte = (*proximo).seguinte;
+			delete proximo;
+			return;
+		}
+		else
+		{
+			atual = (*atual).seguinte;
+		}
+	}
+}
+
+void Listar(No* primeiro)
+{
+	No* atual = primeiro;
+	while (atual != nullptr)
+	{
+		cout << (*atual).valor << " - " << (*atual).nome << endl;
+		atual = (*atual).seguinte;
+	}
 }
 
 int main()
@@ -28,19 +56,7 @@ int main()
 	AdicionarNo(primeiro, segundo);
 	AdicionarNo(segundo, terceiro);
 
-	No* atual = primeiro;
-	while (atual != nullptr)
-	{
-		cout << (*atual).valor << " - " << (*atual).nome << endl;
-		atual = (*atual).seguinte;
-	}
-
-	atual = primeiro;
-	while (atual != nullptr)
-	{
-		No* proximo = (*atual).seguinte;
-		delete atual;
-		atual = proximo;
-	}
-	primeiro = nullptr;
+	Listar(primeiro);
+	RemoverPorValor(primeiro, 20);
+	Listar(primeiro);
 }
