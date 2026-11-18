@@ -104,6 +104,26 @@ Produto ProdutoMaisCaro(Produto p[])
 	return maisCaro;
 }
 
+void SizeOfThing(Produto  p[3])
+{
+	int n;
+	bool b;
+	float f;
+	double d;
+	long l;
+	int array[8];
+	Tipificar t;
+	cout << "Inteiro: " << sizeof(n) << endl;
+	cout << "Bool: " << sizeof(b) << endl;
+	cout << "Float: " << sizeof(f) << endl;
+	cout << "Double: " << sizeof(d) << endl;
+	cout << "Long: " << sizeof(l) << endl;
+	cout << "Array de inteiros: " << sizeof(array) << endl;
+	cout << "Array[7] de inteiros: " << sizeof(array[7]) << endl;
+	cout << "Tipificar: " << sizeof(t) << endl;
+	cout << "Pessoa: " << sizeof(p) / 3 << endl;
+}
+
 int main()
 {
 	// Criar um Produto
@@ -154,21 +174,23 @@ int main()
 	cout << "Mais caro: " << maisCaro.nome << endl;
 	cout << "Soma: " << soma;*/
 
-	int n;
-	bool b;
-	float f;
-	double d;
-	long l;
-	int array[8];
-	Tipificar t;
-	cout << "Inteiro: " << sizeof(n) << endl;
-	cout << "Bool: " << sizeof(b) << endl;
-	cout << "Float: " << sizeof(f) << endl;
-	cout << "Double: " << sizeof(d) << endl;
-	cout << "Long: " << sizeof(l) << endl;
-	cout << "Array de inteiros: " << sizeof(array) << endl;
-	cout << "Array[7] de inteiros: " << sizeof(array[7]) << endl;
-	cout << "Tipificar: " << sizeof(t) << endl;
-	cout << "Pessoa: " << sizeof(p)/3 << endl;
+	//SizeOfThing(p);
 
+	int n;
+	int arry[10];
+	n = 77;
+	cout << n << endl;
+	cout << &n << endl;
+	cout << &arry[0] << endl;
+	cout << &arry[1] << endl;
+
+	cout << n << endl;
+	int* pointer = &n;
+	cout << pointer << endl;
+
+	*pointer = 10;
+
+	cout << pointer << endl;
+	cout << *pointer << endl;
+	cout << n << endl;
 }
