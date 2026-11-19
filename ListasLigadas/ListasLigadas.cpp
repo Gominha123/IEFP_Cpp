@@ -15,7 +15,13 @@ No* CriarNo(int valor, string nome)
 
 void AdicionarNo(No* head, No* novo)
 {
-	(*head).seguinte = novo;
+	No* atual = head;
+	while ((*atual).seguinte != nullptr)
+	{
+		atual = (*atual).seguinte;
+	}
+	(*atual).seguinte = novo;
+	(*novo).seguinte = nullptr;
 }
 
 void RemoverPorValor(No* head, int v)
@@ -37,26 +43,50 @@ void RemoverPorValor(No* head, int v)
 	}
 }
 
-void Listar(No* primeiro)
+
+void Listar(No* head)
 {
-	No* atual = primeiro;
+	if (head == nullptr)
+	{
+		return;
+	}
+
+	No* atual = head;
 	while (atual != nullptr)
 	{
 		cout << (*atual).valor << " - " << (*atual).nome << endl;
 		atual = (*atual).seguinte;
 	}
+
 }
+
+void Exemplo(int* p)
+{
+	cout << "bla bla " << p << endl;
+	cout << "bla bla " << *p << endl;
+}
+
 
 int main()
 {
-	No* primeiro = CriarNo(10, "Ana");
-	No* segundo = CriarNo(20, "Bruno");
-	No* terceiro = CriarNo(30, "Carla");
+	No* headList = nullptr;
+	char op = ' ';
+	while (op == '0')
+	{
+		headList = CriarNo(10, "Ana");
+		No* segundo = CriarNo(20, "Bruno");
+		No* terceiro = CriarNo(30, "Carla");
+		No* quarto = CriarNo(30, "Carla");
+		No* quinto = CriarNo(30, "Carla");
 
-	AdicionarNo(primeiro, segundo);
-	AdicionarNo(segundo, terceiro);
+		AdicionarNo(headList, segundo);
+		AdicionarNo(headList, terceiro);
+		AdicionarNo(headList, quarto);
+		AdicionarNo(headList, quinto);
 
-	Listar(primeiro);
-	RemoverPorValor(primeiro, 20);
-	Listar(primeiro);
+		Listar(headList);
+		RemoverPorValor(headList, 20);
+		cout << "\n";
+		Listar(headList);
+	}
 }
