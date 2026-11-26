@@ -32,6 +32,57 @@ void Listar()
 		atual = (*atual).seguinte;
 	}
 }
+
+void RemoverListaCompleta()
+{
+	if (CABECA == nullptr)
+	{
+		cout << "Lista vazia";
+		return;
+	}
+	No* anterior = CABECA;
+	No* atual = (*anterior).seguinte;
+
+	while (atual != NULL)
+	{
+		delete anterior;
+		anterior = atual;
+		atual = (*anterior).seguinte;
+	}
+	CABECA = NULL;
+	CAUDA = NULL;
+}
+
+void RemoverNo(int condicao)
+{
+	No* anterior = CABECA;
+	No* atual = (*anterior).seguinte;
+
+	if (CABECA == NULL)
+	{
+		cout << "Lista vazia";
+		return;
+	}
+
+	if ((*CABECA).valor == condicao)
+	{
+		delete anterior;
+		CABECA = atual;
+		return;
+	}
+	while (atual != NULL)
+	{
+		if ((*atual).valor == condicao)
+		{
+			(*anterior).seguinte = (*atual).seguinte;
+			delete atual;
+			return;
+		}
+		anterior = atual;
+		atual = (*atual).seguinte;
+	}
+}
+
 // Cria um novo nó
 No* CriarNo(int valor, string nome)
 {
@@ -78,6 +129,13 @@ void InserirOrdenado(No* novo)
 	}
 }
 
+int GetInput()
+{
+	int op;
+	cout << "Insira o valor para remover";
+	cin >> op;
+	return op;
+}
 
 int main()
 {
@@ -166,20 +224,20 @@ int main()
 			break;
 			// --------------------------------------------------------------------------------------------------------------------- 9:REMOVE COMPLETO
 		case '9':
-
+			RemoverNo(GetInput());
 			break;
 			// --------------------------------------------------------------------------------------------------------------------- a:LIMPA LISTA
 		case 'a':
-
+			RemoverListaCompleta();
 			break;
 
 			// --------------------------------------------------------------------------------------------------------------------- b:INICIALIZA COM 3 NÓS "fixos"
 		case 'b':
-			No* um = CriarNo(1, "Primeiro Criado");
+			/*No* um = CriarNo(1, "Primeiro Criado");
 			No* dois = CriarNo(2, "Segundo Criado");
 			No* tres = CriarNo(3, "Terceiro Criado");
 			(*um).seguinte = dois;
-			(*dois).seguinte = tres;
+			(*dois).seguinte = tres;*/
 
 			break;
 			// --------------------------------------------------------------------------------------------------------------------- c:LISTA ORDENADA? SIM/NÃO
